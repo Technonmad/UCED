@@ -159,10 +159,11 @@ public class Login_Frame extends javax.swing.JFrame {
                     main_frame mainFrame = new main_frame();
                     mainFrame.setVisible(true);
                 }
+                else
+                    JOptionPane.showMessageDialog(this, "Пользователя с такими данными не существует!");
             } 
             catch (SQLException ex) {
                 //Logger.getLogger(Login_Frame.class.getName()).log(Level.SEVERE, null, ex);
-                JOptionPane.showMessageDialog(this, "Пользователя с такими данными не существует!");
             }    
         }
         

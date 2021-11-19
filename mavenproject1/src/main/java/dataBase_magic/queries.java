@@ -44,8 +44,18 @@ public class queries {
                 + "where user_name = '"+login+"' and password = '"+password+"'";
         Statement statement = conn.createStatement();
         ResultSet rs = statement.executeQuery(findUser);
-        if(rs.equals(""))
-            return 0;
-        else return 1;
+        while (rs.next()) {
+            if(rs.getString("user_name") != null){
+//                String lastName = rs.getString("user_name");
+//                String pass = rs.getString("password");
+//                System.out.println(lastName + "\t" + pass);
+                return 1;
+            }
+            else{
+                return 0;
+            }
+                
+        }
+        return 2;
     }
 }
