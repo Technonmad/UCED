@@ -19,8 +19,7 @@ import org.jsoup.select.Elements;
  */
 public class parsing {
     
-    private final static Pattern pattern = Pattern.compile("^\\S+");
-    private static Elements names;
+    private final static Pattern pattern1 = Pattern.compile("^\\S+");
     
     public static Document getPage(String value) throws IOException{
         String url = value;
@@ -28,38 +27,31 @@ public class parsing {
         return page;
     }
     
-   public static Elements getNames(String value) throws IOException{
+   public static Elements getText(String value) throws IOException{
        Document doc = getPage(value);
-       names = doc.select("a[class=header]");
-       names.forEach(name -> {
-           System.out.println(name.text());
-       });
+       Elements names = doc.select("a[class=header]");
        return names;
    }
+    
+    public static String getNames(String value) throws IOException{
+       String prod_names = getText(value).text();
+       /*names.forEach(name -> {
+           System.out.println(name.text());
+       });*/
+       return prod_names;
+   }
    
-   public static void getCreatorFromName(Elements value){
-       names = value;
-           names.forEach(name -> {
+   public static String getCreatorFromName(Element value) throws Exception{
+       Matcher matcher = pattern1.matcher(value.text());
+       if(matcher.find())
+           return matcher.group();
+       throw new Exception("Cant extract date from string");
+           /*names.forEach(name -> {
                Matcher matcher = pattern.matcher(name.text());
                if(matcher.find()){
                System.out.println(matcher.group());
            }
-           });
-           
+           });*/
    }
-    
-    /**
-     *
-     * @param args
-     * @throws IOException
-     */
-    public static void main(String[] args) throws IOException{
-        
-       //getNames("https://www.regard.ru/catalog/group11000.htm");
-       getCreatorFromName(getNames("https://www.regard.ru/catalog/group11000.htm"));
-       /* for(int i = 2; i < 25; i++){
-            System.out.println(getPage("https://www.regard.ru/catalog/group11000/page" + i + ".htm"));
-        }*/
-    }
 }
     

@@ -5,12 +5,17 @@
  */
 package dataBase_magic;
 
+import Parsing_magic.parsing;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 
 /**
  *
@@ -57,5 +62,25 @@ public class queries {
                 
         }
         return 2;
+    }
+    
+    public static void updateProducts(String shop_source) throws SQLException, IOException, Exception{
+        
+        String clearTableScript = "truncate products";
+        Statement statement = conn.createStatement();
+        statement.executeUpdate(clearTableScript);
+        
+        String creator, updateScript, prod_names;
+        Elements names = parsing.getText(shop_source);
+        for (Element name: names){
+            creator = parsing.getCreatorFromName(name);
+            prod_names = parsing.getNames(shop_source);
+            updateScript = "insert into products (id, name, creator, shop_name) "
+                + "values ((select count(id) from products) + 1,'"+name.text()+"' , '"+creator+"',(select name from shops where name = 'Regard'))";
+            statement = conn.createStatement();
+            statement.executeUpdate(updateScript);
+        }
+        
+        
     }
 }
