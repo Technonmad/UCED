@@ -6,11 +6,17 @@
 package dataBase_magic;
 
 import Parsing_magic.parsing;
+import java.awt.Component;
+import java.awt.List;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import org.jsoup.nodes.Document;
@@ -66,7 +72,7 @@ public class queries {
     
     public static void updateProducts(String shop_source) throws SQLException, IOException, Exception{
         
-        String clearTableScript = "truncate products";
+        String clearTableScript = "truncate products cascade";
         Statement statement = conn.createStatement();
         statement.executeUpdate(clearTableScript);
         
@@ -75,12 +81,52 @@ public class queries {
         for (Element name: names){
             creator = parsing.getCreatorFromName(name);
             prod_names = parsing.getNames(shop_source);
-            updateScript = "insert into products (id, name, creator, shop_name) "
-                + "values ((select count(id) from products) + 1,'"+name.text()+"' , '"+creator+"',(select name from shops where name = 'Regard'))";
+            updateScript = "insert into products (name, group_name) "
+                + "values ('"+name.text()+"' , (select group_name from groups where group_name = 'body'))";
             statement = conn.createStatement();
             statement.executeUpdate(updateScript);
         }
+    }
+    
+    public static void saveFilters(JPanel panel) throws SQLException{
         
         
+        if(panel.getName() == "bodyPanel"){
+            
+        Component myComps[] = panel.getComponents();
+        ArrayList parameters = new ArrayList();
+        ArrayList filter_names = new ArrayList();
+        String filter, param;
+        
+        for(int i = 0; i < myComps.length; i++){
+            
+            
+            if(myComps[i] instanceof JLabel){
+               JLabel myLabel = (JLabel) myComps[i];
+               filter = myLabel.getText();
+               filter_names.add(filter);
+            }
+            if(myComps[i] instanceof JComboBox){
+               JComboBox comboBox = (JComboBox) myComps[i];
+               param = (String) comboBox.getSelectedItem();
+               parameters.add(param);
+            }
+            
+        }
+        
+        
+        
+        for(int i = 0; i < filter_names.size(); i++){
+            
+            filter = (String) filter_names.get(i);
+            param = (String) parameters.get(i);
+            
+            String updateScript = "insert into filters (id, parameter, value, user_id, type) "
+                + "values ((select count(id) from filters) + 1 , '"+filter+"', '"+param+"', '1', 'body')";
+                Statement statement = conn.createStatement();
+                statement.executeUpdate(updateScript);
+        }
+        
+      }
     }
 }
