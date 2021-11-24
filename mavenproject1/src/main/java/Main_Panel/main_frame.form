@@ -9,14 +9,6 @@
             <Property name="text" type="java.lang.String" value="&#x41c;&#x435;&#x43d;&#x44e;"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem1">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="&#x421;&#x43e;&#x445;&#x440;&#x430;&#x43d;&#x438;&#x442;&#x44c; &#x444;&#x438;&#x43b;&#x44c;&#x442;&#x440;&#x44b;"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem1ActionPerformed"/>
-              </Events>
-            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem3">
               <Properties>
                 <Property name="text" type="java.lang.String" value="&#x412;&#x44b;&#x439;&#x442;&#x438;"/>
@@ -49,9 +41,16 @@
             <Property name="text" type="java.lang.String" value="&#x41a;&#x43e;&#x440;&#x437;&#x438;&#x43d;&#x430;"/>
           </Properties>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="jMenu4">
+        <Menu class="javax.swing.JMenu" name="jMenu5">
           <Properties>
-            <Property name="text" type="java.lang.String" value="jMenu4"/>
+            <Property name="text" type="java.lang.String" value="                                                                                                                                                                                                                     "/>
+            <Property name="enabled" type="boolean" value="false"/>
+          </Properties>
+        </Menu>
+        <Menu class="javax.swing.JMenu" name="jMenu6">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="jMenu6"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Menu>
       </SubComponents>
@@ -168,15 +167,51 @@
                   <Layout>
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <EmptySpace min="0" pref="609" max="32767" attributes="0"/>
+                          <Component id="jScrollPane1" alignment="0" pref="613" max="32767" attributes="0"/>
+                          <Group type="102" alignment="1" attributes="0">
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="jButton3" min="-2" pref="178" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                     </DimensionLayout>
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="jScrollPane1" max="32767" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="jButton3" min="-2" pref="28" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                     </DimensionLayout>
                   </Layout>
+                  <SubComponents>
+                    <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+                      <AuxValues>
+                        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+                      </AuxValues>
+
+                      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+                      <SubComponents>
+                        <Component class="javax.swing.JTable" name="jTable1">
+                          <Properties>
+                            <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                              <Connection code="new javax.swing.table.DefaultTableModel(&#xa;    new Object [][] {&#xa;&#xa;    },&#xa;    new String [] {&#xa;        &quot;&#x41d;&#x430;&#x437;&#x432;&#x430;&#x43d;&#x438;&#x435;&quot;,&quot;&#x421;&#x441;&#x44b;&#x43b;&#x43a;&#x430;&quot;&#xa;    }&#xa;)" type="code"/>
+                            </Property>
+                          </Properties>
+                        </Component>
+                      </SubComponents>
+                    </Container>
+                    <Component class="javax.swing.JButton" name="jButton3">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="&#x41e;&#x442;&#x43a;&#x440;&#x44b;&#x442;&#x44c; &#x441;&#x441;&#x44b;&#x43b;&#x43a;&#x438;"/>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton3ActionPerformed"/>
+                      </Events>
+                    </Component>
+                  </SubComponents>
                 </Container>
                 <Container class="javax.swing.JPanel" name="jPanel9">
                   <Properties>
@@ -239,7 +274,7 @@
                             </DimensionLayout>
                             <DimensionLayout dim="1">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <EmptySpace min="0" pref="429" max="32767" attributes="0"/>
+                                  <EmptySpace min="0" pref="464" max="32767" attributes="0"/>
                               </Group>
                             </DimensionLayout>
                           </Layout>
@@ -261,7 +296,7 @@
                             </DimensionLayout>
                             <DimensionLayout dim="1">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <EmptySpace min="0" pref="429" max="32767" attributes="0"/>
+                                  <EmptySpace min="0" pref="464" max="32767" attributes="0"/>
                               </Group>
                             </DimensionLayout>
                           </Layout>
@@ -283,7 +318,7 @@
                             </DimensionLayout>
                             <DimensionLayout dim="1">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <EmptySpace min="0" pref="429" max="32767" attributes="0"/>
+                                  <EmptySpace min="0" pref="464" max="32767" attributes="0"/>
                               </Group>
                             </DimensionLayout>
                           </Layout>
@@ -305,7 +340,7 @@
                             </DimensionLayout>
                             <DimensionLayout dim="1">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <EmptySpace min="0" pref="429" max="32767" attributes="0"/>
+                                  <EmptySpace min="0" pref="464" max="32767" attributes="0"/>
                               </Group>
                             </DimensionLayout>
                           </Layout>
@@ -327,7 +362,7 @@
                             </DimensionLayout>
                             <DimensionLayout dim="1">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <EmptySpace min="0" pref="429" max="32767" attributes="0"/>
+                                  <EmptySpace min="0" pref="464" max="32767" attributes="0"/>
                               </Group>
                             </DimensionLayout>
                           </Layout>
@@ -349,7 +384,7 @@
                             </DimensionLayout>
                             <DimensionLayout dim="1">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <EmptySpace min="0" pref="429" max="32767" attributes="0"/>
+                                  <EmptySpace min="0" pref="464" max="32767" attributes="0"/>
                               </Group>
                             </DimensionLayout>
                           </Layout>
@@ -371,7 +406,7 @@
                             </DimensionLayout>
                             <DimensionLayout dim="1">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <EmptySpace min="0" pref="429" max="32767" attributes="0"/>
+                                  <EmptySpace min="0" pref="464" max="32767" attributes="0"/>
                               </Group>
                             </DimensionLayout>
                           </Layout>
@@ -458,7 +493,7 @@
                                           <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
                                           <Component id="jButton2" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace pref="233" max="32767" attributes="0"/>
+                                      <EmptySpace pref="268" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                             </DimensionLayout>
@@ -563,6 +598,9 @@
                               <Properties>
                                 <Property name="text" type="java.lang.String" value="&#x41f;&#x43e;&#x438;&#x441;&#x43a;"/>
                               </Properties>
+                              <Events>
+                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+                              </Events>
                             </Component>
                             <Component class="javax.swing.JButton" name="jButton2">
                               <Properties>
@@ -586,8 +624,8 @@
                               <Properties>
                                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                                   <StringArray count="2">
-                                    <StringItem index="0" value="&#x414;&#x430;"/>
-                                    <StringItem index="1" value="&#x41d;&#x435;&#x442;"/>
+                                    <StringItem index="0" value="&#x421; &#x43e;&#x43a;&#x43d;&#x43e;&#x43c;"/>
+                                    <StringItem index="1" value="null"/>
                                   </StringArray>
                                 </Property>
                               </Properties>
@@ -599,8 +637,8 @@
                               <Properties>
                                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                                   <StringArray count="2">
-                                    <StringItem index="0" value="&#x414;&#x430;"/>
-                                    <StringItem index="1" value="&#x41d;&#x435;&#x442;"/>
+                                    <StringItem index="0" value="&#x41f;&#x43e;&#x434;&#x441;&#x432;&#x435;&#x442;&#x43a;&#x430;"/>
+                                    <StringItem index="1" value="null"/>
                                   </StringArray>
                                 </Property>
                               </Properties>
@@ -697,7 +735,7 @@
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="477" max="32767" attributes="0"/>
+                              <EmptySpace pref="535" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -796,7 +834,7 @@
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="477" max="32767" attributes="0"/>
+                              <EmptySpace pref="535" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -895,7 +933,7 @@
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="477" max="32767" attributes="0"/>
+                              <EmptySpace pref="535" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>

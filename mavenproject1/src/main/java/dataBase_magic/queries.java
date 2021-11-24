@@ -9,6 +9,7 @@ import Parsing_magic.parsing;
 import java.awt.Component;
 import java.awt.List;
 import java.io.IOException;
+import java.net.URI;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -16,9 +17,12 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
+import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
@@ -76,19 +80,20 @@ public class queries {
         Statement statement = conn.createStatement();
         statement.executeUpdate(clearTableScript);
         
-        String creator, updateScript, prod_names;
+        String creator, updateScript, link;//,prod_names;
         Elements names = parsing.getText(shop_source);
         for (Element name: names){
             creator = parsing.getCreatorFromName(name);
-            prod_names = parsing.getNames(shop_source);
-            updateScript = "insert into products (name, group_name) "
-                + "values ('"+name.text()+"' , (select group_name from groups where group_name = 'body'))";
+            link = parsing.getTextLink(name);
+            //prod_names = parsing.getNames(shop_source);
+            updateScript = "insert into products (id, name, group_name, creator, link) "
+                + "values ((select count(id) from products) + 1,'"+name.text()+"' , (select group_name from groups where group_name = 'body'), '"+creator+"', '"+link+"')";
             statement = conn.createStatement();
             statement.executeUpdate(updateScript);
         }
     }
     
-    public static void saveFilters(JPanel panel) throws SQLException{
+    public static void saveFilters(JPanel panel, String username) throws SQLException{
         
         
         if(panel.getName() == "bodyPanel"){
@@ -122,11 +127,37 @@ public class queries {
             param = (String) parameters.get(i);
             
             String updateScript = "insert into filters (id, parameter, value, user_id, type) "
-                + "values ((select count(id) from filters) + 1 , '"+filter+"', '"+param+"', '1', 'body')";
+                + "values ((select count(id) from filters) + 1 , '"+filter+"',"
+                    + "'"+param+"', (select user_id from users_table where user_name = '"+username+"'), 'body')";
                 Statement statement = conn.createStatement();
                 statement.executeUpdate(updateScript);
         }
         
       }
+    }
+    
+    public static void getBodiesByParams(String form, String type, JTable table, String creator) throws IOException, SQLException{
+        
+        ArrayList<String> params = new ArrayList<String>();
+        params = parsing.getTextParameters(parsing.getParameters("https://www.regard.ru/catalog/group11000.htm"));
+        ResultSet rs1 = null;
+        DefaultTableModel table_model = (DefaultTableModel)table.getModel();
+        while(table_model.getRowCount() > 0)
+        {
+            table_model.removeRow(0);
+        }
+        for(int i = 0; i < params.size(); i++){
+            
+            if(params.get(i).contains(form) && params.get(i).contains(type)){
+                
+                String getNamesAndLinksScript = "select name, link from products where id = '"+i+"' and creator = '"+creator+"'";
+                Statement statement = conn.createStatement();
+                rs1 = statement.executeQuery(getNamesAndLinksScript);
+                while(rs1.next())
+                    table_model.addRow(new Object[] {rs1.getString("name"), rs1.getString("link")});
+            }
+            
+        }
+        
     }
 }

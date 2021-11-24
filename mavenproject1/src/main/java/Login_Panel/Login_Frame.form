@@ -142,9 +142,6 @@
     </Container>
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="C:\Users\User\Documents\GitHub\UCED\mavenproject1\src\main\java\images\42b85ad0-f7b5-4750-9280-17a2ac2ba28c (1).jpg"/>
-        </Property>
         <Property name="text" type="java.lang.String" value="jLabel3"/>
       </Properties>
     </Component>

@@ -6,6 +6,7 @@ package Parsing_magic;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.jsoup.Jsoup;
@@ -20,6 +21,7 @@ import org.jsoup.select.Elements;
 public class parsing {
     
     private final static Pattern pattern1 = Pattern.compile("^\\S+");
+    private final static Pattern pattern2 = Pattern.compile("[a-zA-Z]+");
     
     public static Document getPage(String value) throws IOException{
         String url = value;
@@ -32,7 +34,24 @@ public class parsing {
        Elements names = doc.select("a[class=header]");
        return names;
    }
-    
+   
+   public static Elements getParameters(String value) throws IOException{
+       Document doc = getPage(value);
+       Elements param = doc.getElementsByClass("bcontent");
+       return param;
+   }
+   
+   public static ArrayList getTextParameters(Elements value) throws IOException{
+       
+       ArrayList<String> params = new ArrayList<String>();
+       value.forEach(values -> {
+           params.add(values.ownText());
+           //System.out.println(values.ownText());
+       });
+       
+       return params;
+   }
+   
     public static String getNames(String value) throws IOException{
        String prod_names = getText(value).text();
        /*names.forEach(name -> {
@@ -52,6 +71,21 @@ public class parsing {
                System.out.println(matcher.group());
            }
            });*/
+   }
+   
+   public static Elements getLink(String value) throws IOException{
+       
+       Document doc = getPage(value);
+       Elements link = doc.select("a[href]");
+       
+       return link;
+       
+   }
+   
+   public static String getTextLink(Element value) throws IOException{
+       
+       String prod_links = "https://www.regard.ru" + value.attr("href");
+       return prod_links;
    }
 }
     

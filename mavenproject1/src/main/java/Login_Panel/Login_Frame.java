@@ -12,12 +12,16 @@ package Login_Panel;
 import Main_Panel.main_frame;
 import Main_Panel.main_frame_admin;
 import Main_Panel.main_frame_anon;
+import Parsing_magic.parsing;
 import dataBase_magic.queries;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 public class Login_Frame extends javax.swing.JFrame {
+
+    private String username;
     
     /**
      * Creates new form Login_Frame
@@ -126,7 +130,6 @@ public class Login_Frame extends javax.swing.JFrame {
                 .addGap(18, 18, 18))
         );
 
-        jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Users\\User\\Documents\\GitHub\\UCED\\mavenproject1\\src\\main\\java\\images\\42b85ad0-f7b5-4750-9280-17a2ac2ba28c (1).jpg")); // NOI18N
         jLabel3.setText("jLabel3");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -161,8 +164,9 @@ public class Login_Frame extends javax.swing.JFrame {
                     admin_frame.setVisible(true);
                 }
                 else if(queries.findUser(jTextField1, jPasswordField1) == 1){
+                    username = jTextField1.getText();
                     this.closeFrame();
-                    main_frame mainFrame = new main_frame();
+                    main_frame mainFrame = new main_frame(username);
                     mainFrame.setVisible(true);
                 }
                 else
